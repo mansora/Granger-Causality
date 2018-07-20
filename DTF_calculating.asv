@@ -34,15 +34,17 @@ function DTF_calculating(outputname,p)
             end    
             AforH(:,:,lam,sn) = Imone - prepA;                                % AforH - matrix A to get matrix H
             H(:,:,lam,sn) = inv(AforH(:,:,lam,sn));                          % H - matrix we need for calclating DTF
-            
-            thetapre(:,:,lam,sn) = abs(H(:,:,lam,sn));
-            theta(:,:,lam,sn) = (thetapre(:,:,lam,sn)).^2;
-            
-                                                                     % to channel
-            for j=1:m                                                      % from channel
-                DTF(:,j,lam, sn) = (theta(:,j,lam, sn)/(H(:,j,lam, sn)'*H(:,j,lam, sn));
+            for i=1:m                                                          % to channel
+                for j=1:m                                                      % from channel
+                    thetapre{sn,lam}(i,j) = abs(H{sn,lam}(i,j));
+                    theta{sn,lam}(i,j) = (thetapre{sn,lam}(i,j))^2;
+                end
             end
-            
+            for i=1:m                                                          % to channel
+                for j=1:m                                                      % from channel
+                    DTF{sn,lam}(i,j) = (theta{sn,lam}(i,j))/(H{sn,lam}(:,j)'*H{sn,lam}(:,j));
+                end
+            end 
         end
     end
 
