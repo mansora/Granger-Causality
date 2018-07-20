@@ -32,13 +32,13 @@ function PDC_calculating(outputname,p)
             for q=1:p
                 prepA = prepA + exp((-2i)*(pi)*(f(lam))*q) * ApAR(:,:,q,sn);
             end    
-            Adash{sn,lam}(:,:) = Imone - prepA;
-            for i=1:m                                                          % to channel
-                for j=1:m                                                      % from channel
-                    prePDC{sn,lam}(i,j) = Adash{sn,lam}(i,j)/(sqrt(Adash{sn,lam}(:,j)'*Adash{sn,lam}(:,j)));
-                    PDC{sn,lam}(i,j) = abs(prePDC{sn,lam}(i,j))^2;
-                end
-            end    
+            Adash(:,:,lam,sn) = Imone - prepA;
+                                                                      % to channel
+            for j=1:m                                                      % from channel
+                prePDC(:,j,lam, sn) = Adash(:,j, lam, sn)/(sqrt(Adash(:,j,lam, sn)'*Adash(:,j,lam, sn)));
+                PDC(:,j,lam, sn) = abs(prePDC(:,j,lam, sn)).^2;
+            end
+
         end
     end
 
