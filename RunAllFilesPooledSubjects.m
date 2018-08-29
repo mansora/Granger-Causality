@@ -70,12 +70,12 @@ for i=1:4
     GeneralLinearKalmanFilteringUni(s, p, outputname)
     fprintf('PDC calculating for %s \n', outputname);
     PDC_calculating(outputname,p)
-    PDC_average_per_freq(outputname)
+%     PDC_average_per_freq(outputname)
 %     PDC_average_plotting_per_freqband(outputname)
     
     fprintf('DTF calculating for %s \n', outputname);
     DTF_calculating(outputname,p)
-    DTF_average_per_freq(outputname)
+%     DTF_average_per_freq(outputname)
 %     DTF_average_plotting_per_freqband(outputname)
     
 end
